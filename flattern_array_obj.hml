@@ -1,0 +1,68 @@
+const json = [
+  {
+    name: "animal",
+    link: "animal",
+    type: [
+      {
+        name: "dog",
+        link: "animal/dog"
+      },
+      {
+        name: "cat",
+        link: "animal/cat",
+        type: [
+          {
+            name: "Savannah Cat",
+            link: "animal/cat/savannah"
+          },
+          {
+            name: "Bombay Cat",
+            link: "animal/cat/bombay"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: "car",
+    link: "car",
+    type: [
+      {
+        name: "dodge",
+        link: "car/dodge"
+      },
+      {
+        name: "mazda",
+        link: "car/mazda",
+        type: [
+          {
+            name: "MX5",
+            link: "car/mazda/mx5"
+          },
+          {
+            name: "CX5",
+            link: "car/mazda/cx5"
+          }
+        ]
+      }
+    ]
+  }
+];
+
+let data = [];
+ let flattenedLinks = arr => {
+    if (arr.length > 0)
+    {
+      arr.forEach(t => {
+        if (t.link) {
+          data.push(t.link)
+        }
+        if (t.type) {
+          flattenedLinks(t.type)
+        }
+      });
+    }
+  }
+  flattenedLinks(json);
+
+console.log([...data]);
